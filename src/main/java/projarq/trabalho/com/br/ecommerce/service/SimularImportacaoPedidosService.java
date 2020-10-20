@@ -4,15 +4,13 @@ import com.github.javafaker.Faker;
 import org.apache.commons.lang3.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import projarq.trabalho.com.br.ecommerce.domain.Pedido;
-import projarq.trabalho.com.br.ecommerce.domain.ProdutoInfo;
-import projarq.trabalho.com.br.ecommerce.entity.ClienteEntity;
-import projarq.trabalho.com.br.ecommerce.entity.ECommerceEntity;
-import projarq.trabalho.com.br.ecommerce.entity.PedidoEntity;
-import projarq.trabalho.com.br.ecommerce.entity.ProdutoInfoEntity;
-import projarq.trabalho.com.br.ecommerce.repository.ClienteRepository;
+import projarq.trabalho.com.br.ecommerce.entity.ECommerce;
+import projarq.trabalho.com.br.ecommerce.entity.Pedido;
+import projarq.trabalho.com.br.ecommerce.entity.ProdutoInfo;
+import projarq.trabalho.com.br.ecommerce.entity.Usuario;
 import projarq.trabalho.com.br.ecommerce.repository.ECommerceRepository;
 import projarq.trabalho.com.br.ecommerce.repository.PedidoRepository;
+import projarq.trabalho.com.br.ecommerce.repository.UsuarioRepository;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
@@ -21,10 +19,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
-import static projarq.trabalho.com.br.ecommerce.domain.StatusPedido.*;
+import static projarq.trabalho.com.br.ecommerce.entity.StatusPedido.*;
 
 @Service
 @Transactional
@@ -34,7 +31,7 @@ public class SimularImportacaoPedidosService {
     private PedidoRepository pedidoRepository;
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private UsuarioRepository usuarioRepository;
 
     @Autowired
     private ECommerceRepository eCommerceRepository;
@@ -42,9 +39,9 @@ public class SimularImportacaoPedidosService {
     @Autowired
     private Faker faker;
 
-    public void simular(String cpf) {
+    public void simular(String email) {
 
-        ClienteEntity cliente = clienteRepository.findByCpf(cpf);
+        Usuario cliente = usuarioRepository.findByEmail(email);
 
         final int quantidadePedidosRealizado = RandomUtils.nextInt(1, 11);
 
@@ -58,19 +55,18 @@ public class SimularImportacaoPedidosService {
             calcularValorPedido(pedido);
             calcularStatusPedido(pedido);
 
-            PedidoEntity pedidoEntity = PedidoEntity.builder()
+            Pedido novoPedido = Pedido.builder()
                     .cliente(cliente)
                     .ecommerce(escolherECommerce())
                     .dataPedido(pedido.getDataPedido())
                     .dataEstimativaEntrega(pedido.getDataEstimativaEntrega())
                     .dataEntrega(pedido.getDataEntrega())
                     .statusPedido(pedido.getStatusPedido())
-                    .produtoInfos(buildProdutoInfoEntityList(pedido.getProdutoInfos()))
+                    .produtoInfos(pedido.getProdutoInfos())
                     .valorTotalCompra(pedido.getValorTotalCompra())
                     .build();
 
-            pedidoRepository.save(pedidoEntity);
-
+            pedidoRepository.save(novoPedido);
 
         }
     }
@@ -146,23 +142,12 @@ public class SimularImportacaoPedidosService {
         pedido.setStatusPedido(ENTREGUE);
     }
 
+    private ECommerce escolherECommerce() {
 
-    private List<ProdutoInfoEntity> buildProdutoInfoEntityList(List<ProdutoInfo> produtoInfos) {
-        return produtoInfos.stream()
-                .map(produtoInfo -> ProdutoInfoEntity.builder()
-                        .nome(produtoInfo.getNome())
-                        .quantidade(produtoInfo.getQuantidade())
-                        .valorUnidade(produtoInfo.getValorUnidade())
-                        .build())
-                .collect(Collectors.toList());
-    }
-
-    private ECommerceEntity escolherECommerce() {
-
-        List<ECommerceEntity> eCommerceEntities = eCommerceRepository.findAll();
+        List<ECommerce> eCommerces = eCommerceRepository.findAll();
         Random rand = new Random();
-        ECommerceEntity eCommerceEntity = eCommerceEntities.get(rand.nextInt(eCommerceEntities.size()));
+        ECommerce eCommerce = eCommerces.get(rand.nextInt(eCommerces.size()));
 
-        return eCommerceEntity;
+        return eCommerce;
     }
 }

@@ -1,4 +1,4 @@
-package projarq.trabalho.com.br.ecommerce.request;
+package projarq.trabalho.com.br.ecommerce.json.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

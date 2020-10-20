@@ -1,9 +1,9 @@
-package projarq.trabalho.com.br.ecommerce.response;
+package projarq.trabalho.com.br.ecommerce.json.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import projarq.trabalho.com.br.ecommerce.domain.Pedido;
+import projarq.trabalho.com.br.ecommerce.entity.Pedido;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,8 +14,5 @@ import java.util.List;
 public class BuscarPedidosResponse implements Serializable {
 
     private List<Pedido> pedidos;
-
-    public BuscarPedidosResponse() {
-    }
 
 }

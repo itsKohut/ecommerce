@@ -1,4 +1,4 @@
-package projarq.trabalho.com.br.ecommerce.domain;
+package projarq.trabalho.com.br.ecommerce.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

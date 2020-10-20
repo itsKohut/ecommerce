@@ -1,4 +1,4 @@
-package projarq.trabalho.com.br.ecommerce.domain;
+package projarq.trabalho.com.br.ecommerce.json.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,8 +11,10 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ECommerce implements Serializable {
+public class LoginClientRequest implements Serializable {
 
-    private Long cnpj;
-    private String nome;
+    private String email;
+    private String password;
+
 }
+

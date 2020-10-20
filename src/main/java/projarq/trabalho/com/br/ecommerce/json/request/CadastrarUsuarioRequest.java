@@ -1,9 +1,10 @@
-package projarq.trabalho.com.br.ecommerce.domain;
+package projarq.trabalho.com.br.ecommerce.json.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import projarq.trabalho.com.br.ecommerce.entity.Endereco;
 
 import java.io.Serializable;
 
@@ -11,11 +12,12 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cliente implements Serializable {
+public class CadastrarUsuarioRequest implements Serializable {
 
+    private String password;
     private String cpf;
     private String nome;
+    private Endereco endereco;
     private String email;
     private String telefone;
-    private Endereco endereco;
 }

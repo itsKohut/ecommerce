@@ -1,21 +1,24 @@
 package projarq.trabalho.com.br.ecommerce.repository;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import projarq.trabalho.com.br.ecommerce.domain.StatusPedido;
-import projarq.trabalho.com.br.ecommerce.entity.ClienteEntity;
-import projarq.trabalho.com.br.ecommerce.entity.ECommerceEntity;
-import projarq.trabalho.com.br.ecommerce.entity.PedidoEntity;
+import projarq.trabalho.com.br.ecommerce.entity.*;
 
 import java.util.List;
 
 @Repository
-public interface PedidoRepository extends CrudRepository<PedidoEntity, Long> {
+public interface PedidoRepository extends CrudRepository<Pedido, Long> {
 
-    List<PedidoEntity> findByCliente(ClienteEntity cliente);
+    List<Pedido> findByClienteAndEcommerce(Usuario cliente, ECommerce eCommerce);
 
-    List<PedidoEntity>  findByClienteAndEcommerce(ClienteEntity cliente, ECommerceEntity eCommerce);
+    List<Pedido> findByClienteAndEcommerceAndStatusPedido(Usuario cliente, ECommerce eCommerce, StatusPedido statusPedido);
 
-    List<PedidoEntity>  findByClienteAndEcommerceAndStatusPedido(ClienteEntity cliente, ECommerceEntity eCommerce, StatusPedido statusPedido);
+    @Query("SELECT pi FROM Pedido p  " +
+            "JOIN p.cliente c " +
+            "JOIN p.produtoInfos pi " +
+            "WHERE p.cliente = :usuarioEntity and p.id = :pedidoID")
+    List<ProdutoInfo> findDetailsByUsuarioAndPedido(Usuario usuario, Long pedidoID);
+
 
 }

@@ -7,21 +7,23 @@ import lombok.Getter;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Builder
-@Table(name = "PRODUTO_INFO")
-@Entity
-@AllArgsConstructor
 @Getter
-public class ProdutoInfoEntity implements Serializable {
+@Entity
+@Builder
+@Table(name = "ECOMMERCE")
+@AllArgsConstructor
+public class ECommerce implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "PRODUTO_INFO_ID", unique = true, nullable = false)
+    @Column(name = "ECOMMERCE_ID", unique = true, nullable = false)
     private Long id;
 
-    private String nome;
-    private Double valorUnidade;
-    private Integer quantidade;
+    @Column(unique = true)
+    private Long cnpj;
 
-    public ProdutoInfoEntity(){}
+    @Column(unique = true)
+    private String nome;
+
+    public ECommerce(){}
 }

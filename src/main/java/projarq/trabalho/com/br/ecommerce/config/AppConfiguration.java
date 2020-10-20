@@ -13,4 +13,5 @@ public class AppConfiguration {
     public Faker myFaker() {
         return new Faker(new Locale("pt-BR"));
     }
+
 }

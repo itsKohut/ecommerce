@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Builder
 @Table(name = "ENDERECO")
 @AllArgsConstructor
-public class EnderecoEntity  implements Serializable {
+public class Endereco implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,7 +23,5 @@ public class EnderecoEntity  implements Serializable {
     private String bairro;
     private String cidade;
     private String estado;
-
-    public EnderecoEntity(){}
 
 }

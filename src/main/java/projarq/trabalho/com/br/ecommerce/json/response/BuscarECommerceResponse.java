@@ -1,7 +1,7 @@
-package projarq.trabalho.com.br.ecommerce.response;
+package projarq.trabalho.com.br.ecommerce.json.response;
 
 import lombok.Builder;
-import projarq.trabalho.com.br.ecommerce.domain.ECommerce;
+import projarq.trabalho.com.br.ecommerce.entity.ECommerce;
 
 import java.io.Serializable;
 import java.util.List;

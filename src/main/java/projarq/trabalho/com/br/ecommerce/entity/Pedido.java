@@ -1,10 +1,10 @@
 package projarq.trabalho.com.br.ecommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
-import projarq.trabalho.com.br.ecommerce.domain.StatusPedido;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,11 +13,11 @@ import java.util.Date;
 import java.util.List;
 
 @Builder
-@Getter
+@Data
 @Table(name = "PEDIDO")
 @Entity
 @AllArgsConstructor
-public class PedidoEntity implements Serializable {
+public class Pedido implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,11 +26,11 @@ public class PedidoEntity implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CLIENTE_ID")
-    private ClienteEntity cliente;
+    private Usuario cliente;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ECOMMERCE_ID")
-    private ECommerceEntity ecommerce;
+    private ECommerce ecommerce;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -47,11 +47,12 @@ public class PedidoEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     private StatusPedido statusPedido;
 
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "PEDIDO_ID", referencedColumnName = "PEDIDO_ID")
-    private List<ProdutoInfoEntity> produtoInfos;
+    private List<ProdutoInfo> produtoInfos;
 
     private BigDecimal valorTotalCompra;
 
-    public PedidoEntity(){}
+    public Pedido(){}
 }

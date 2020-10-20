@@ -9,7 +9,7 @@ public class ImportarPedidosService {
     @Autowired
     private SimularImportacaoPedidosService simularImportacaoPedidosService;
 
-    public void importar(String cpf) {
-          simularImportacaoPedidosService.simular(cpf);
+    public void importar(String email) {
+          simularImportacaoPedidosService.simular(email);
     }
 }

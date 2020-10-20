@@ -2,6 +2,7 @@ package projarq.trabalho.com.br.ecommerce.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,13 +10,16 @@ import java.io.Serializable;
 @Entity
 @Builder
 @Table(name = "CLIENTE")
+@Getter
 @AllArgsConstructor
-public class ClienteEntity implements Serializable {
+public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CLIENTE_ID", unique = true, nullable = false)
     private Long id;
+
+    private String password;
 
     @Column(unique = true)
     private String cpf;
@@ -29,7 +33,7 @@ public class ClienteEntity implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "CLIENTE_ENDERECO")
-    private EnderecoEntity enderecoEntity;
+    private Endereco endereco;
 
-    public ClienteEntity() {}
+    public Usuario() {}
 }
