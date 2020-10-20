@@ -7,7 +7,5 @@ import projarq.trabalho.com.br.ecommerce.entity.Usuario;
 @Repository
 public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 
-    Usuario findByCpf(String cpf);
-
     Usuario findByEmail(String email);
 }

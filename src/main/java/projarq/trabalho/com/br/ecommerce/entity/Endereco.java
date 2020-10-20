@@ -3,12 +3,14 @@ package projarq.trabalho.com.br.ecommerce.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Builder
+@Data
 @Table(name = "ENDERECO")
 @AllArgsConstructor
 public class Endereco implements Serializable {
@@ -24,4 +26,5 @@ public class Endereco implements Serializable {
     private String cidade;
     private String estado;
 
+    public Endereco() {}
 }
