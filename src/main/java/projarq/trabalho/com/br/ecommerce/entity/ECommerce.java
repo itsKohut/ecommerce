@@ -2,6 +2,7 @@ package projarq.trabalho.com.br.ecommerce.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 
 @Getter
 @Entity
+@Data
 @Builder
 @Table(name = "ECOMMERCE")
 @AllArgsConstructor

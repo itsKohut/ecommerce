@@ -1,5 +1,6 @@
 package projarq.trabalho.com.br.ecommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,6 +20,7 @@ public class Usuario implements Serializable {
     @Column(name = "CLIENTE_ID", unique = true, nullable = false)
     private Long id;
 
+    @JsonIgnore
     private String password;
 
     @Column(unique = true)

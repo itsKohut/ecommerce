@@ -135,7 +135,7 @@ public class SimularImportacaoPedidosService {
         }
 
         if (pedido.getDataEntrega().after(pedido.getDataEstimativaEntrega())) {
-            pedido.setStatusPedido(ENTREGUE_COM_ATRASO);
+            pedido.setStatusPedido(ATRASADO);
             return;
         }
 

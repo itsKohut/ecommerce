@@ -8,7 +8,7 @@ import lombok.Getter;
 public enum StatusPedido {
 
      EM_ANDAMENTO("Em andamento"),
-     ENTREGUE_COM_ATRASO("Entregue com atrasdo"),
+     ATRASADO("Entregue com atraso"),
      ENTREGUE("Entregue");
 
      private String descricao;
