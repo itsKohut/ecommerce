@@ -1,0 +1,340 @@
+{
+	"info": {
+		"_postman_id": "07611038-6102-4246-af04-79a31a33705a",
+		"name": "E-Commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cadastro usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\" : \"marcelo\",\r\n    \"cpf\" : \"0123456789\",\r\n    \"nome\" : \"Marcelo de Souza\",\r\n    \"endereco\" : {\r\n        \"cep\" : \"1122233\",\r\n        \"numero\" : \"123\",\r\n        \"logradouro\" : \"Rua Sem Saida\",\r\n        \"bairro\" : \"Centro\",\r\n        \"cidade\" : \"Porto Alegre\",\r\n        \"estado\" : \"Rio Grande do Sul\"\r\n    },\r\n    \"email\" : \"marcelo@gmail.com\",\r\n    \"telefone\": \"51 982828282\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuario/registrar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario",
+						"registrar"
+					]
+				},
+				"description": "Endpoint para cadastro de usuários\r\n\r\n* Não autenticado"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4fa3bb76-1784-4b3f-99b3-a8c36bd9c23d",
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"let token = jsonData.accessToken;\r",
+							"pm.environment.set('accessToken', token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\" : \"marcelo\",\r\n    \"email\" : \"marcelo@gmail.com\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": ""
+				},
+				"description": "Endpoint para login do usuário\r\n\r\n* Endpoint não autenticado."
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro e-commerce",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJjZWxvQGdtYWlsLmNvbSIsIlJPTEVTIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE2MDMxNzI3MzIsImlhdCI6MTYwMzE1NDczMn0.jXJTsmHemd7Mm093Z4xWTfk5bR5PWqCD96CVPqcLQmSyxEMHiMhFpj0u6qIGDbGKhNDbc4dfrQFnoTOIydmqTg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "\"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJjZWxvQGdtYWlsLmNvbSIsIlJPTEVTIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE2MDMxNzE4MzUsImlhdCI6MTYwMzE1MzgzNX0.16k73ZKgVFtVcZ0oGNkyJLkqiTgmaSpT9rj8kOCSTw6gGw4LgRwru7eI4TJ1EdFnfFdAqjgq87aj3X3Fi0l4Bw\"",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cnpj\": 123456789,\r\n    \"nome\": \"Amazon\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ecommerce",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ecommerce"
+					]
+				},
+				"description": "Endpoint para cadastro e-commerce\r\n\r\n* Endpoint autenticado (usuário padrão)\r\n- Poderia ser apenas admin, porém não foi estipulado no trabalho\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Importação de pedidos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJjZWxvQGdtYWlsLmNvbSIsIlJPTEVTIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE2MDUxMjM2NDAsImlhdCI6MTYwMzMyMzY0MH0.lRO2mRWrZ3r_lzdXfDf0AQqKmsqvYXfeH3tOrrUnffORvDeS4LVd1K6coZ6DVV4X6ruBjU8OrbNsYSpCw1bgxA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/pedido/importar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pedido",
+						"importar"
+					]
+				},
+				"description": "Endpoint que simula a importação de pedidos dos e-commerces cadastrados\r\n\r\n* Endpoint autenticado (usuário padrão)"
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta todos os ecommerces",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJjZWxvQGdtYWlsLmNvbSIsIlJPTEVTIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE2MDUxMjQzMjcsImlhdCI6MTYwMzMyNDMyN30.KGRmSMg7qkLIQHuPp6QKtGiSImpxs-X85MmmxtD7epOBYT7ijoUIaxHcFCVUCiCilxOTyZWTbNSZe6GZQhlGHQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ecommerce/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ecommerce",
+						""
+					]
+				},
+				"description": "Endpoint de consulta de todos os e-commerces cadastrados independentes do usuário.\r\n\r\n* Endpoint autenticado (usuário padrão)"
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta pedidos por e-commerce por usuário",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJjZWxvQGdtYWlsLmNvbSIsIlJPTEVTIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE2MDUxMjM2NDAsImlhdCI6MTYwMzMyMzY0MH0.lRO2mRWrZ3r_lzdXfDf0AQqKmsqvYXfeH3tOrrUnffORvDeS4LVd1K6coZ6DVV4X6ruBjU8OrbNsYSpCw1bgxA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/pedido/ecommerce?nome=Amazon",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pedido",
+						"ecommerce"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "Amazon"
+						}
+					]
+				},
+				"description": "Endpoint de consulta pedidos por e-commerce e por status\r\n\r\n* status é opcional\r\n* Endpoint autenticado (usuário padrão)"
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar pedidos por data para usuário",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJjZWxvQGdtYWlsLmNvbSIsIlJPTEVTIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE2MDUxMjQ0MzEsImlhdCI6MTYwMzMyNDQzMX0.hCyZP863wTo-5izK7O9V8Pibqpotc5GkF82R-agTl0qr7mHBH0Wy8KeLOuljFHVVcIFn0iWKask_K1lQRL_tSQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/pedido/data?data=2020-10-20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pedido",
+						"data"
+					],
+					"query": [
+						{
+							"key": "data",
+							"value": "2020-10-20"
+						}
+					]
+				},
+				"description": "Endpoint para buscar pedidos por data para usuário\r\n\r\n* Endpoint autenticado (usuário padrão)"
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar pedidos por agilidade na entrega",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJjZWxvQGdtYWlsLmNvbSIsIlJPTEVTIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE2MDUxMjU2ODYsImlhdCI6MTYwMzMyNTY4Nn0.IflMHXpXKK0egGZJParaPIIMtDv59vb5swpq4hHoRv4t8KQYuTy7VkL5fwmS6my9qjtb6g6jaTbPSk2tik5CTw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/pedido/agilidade",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pedido",
+						"agilidade"
+					]
+				},
+				"description": "Endpoint para buscar pedidos por agilidade na entrega\r\n* Endpoint autenticado (usuário padrão)"
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar pedidos dentro do prazo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJjZWxvQGdtYWlsLmNvbSIsIlJPTEVTIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE2MDUxMjU2ODYsImlhdCI6MTYwMzMyNTY4Nn0.IflMHXpXKK0egGZJParaPIIMtDv59vb5swpq4hHoRv4t8KQYuTy7VkL5fwmS6my9qjtb6g6jaTbPSk2tik5CTw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/pedido/prazo?entregue=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pedido",
+						"prazo"
+					],
+					"query": [
+						{
+							"key": "entregue",
+							"value": "true"
+						}
+					]
+				},
+				"description": "Endpoint para buscar pedidos dentro do prazo\r\n\r\n- entregue (boolean) opcional, para lista apenas entregues\r\n* Endpoint autenticado (usuário padrão)"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
