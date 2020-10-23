@@ -67,7 +67,15 @@
 					}
 				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
 				},
 				"description": "Endpoint para login do usuário\r\n\r\n* Endpoint não autenticado."
 			},
@@ -81,7 +89,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJjZWxvQGdtYWlsLmNvbSIsIlJPTEVTIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE2MDMxNzI3MzIsImlhdCI6MTYwMzE1NDczMn0.jXJTsmHemd7Mm093Z4xWTfk5bR5PWqCD96CVPqcLQmSyxEMHiMhFpj0u6qIGDbGKhNDbc4dfrQFnoTOIydmqTg",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJjZWxvQGdtYWlsLmNvbSIsIlJPTEVTIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE2MDUyNzk0NDAsImlhdCI6MTYwMzQ3OTQ0MH0.naJOvpbDxIG69Fx91mAu2uydi8yJH6HYDt4fu99PIpcdEmnFyAnt0rG3zj4p-XVIfDiWhKnN_S92kI35mi6X6Q",
 							"type": "string"
 						}
 					]
@@ -127,13 +135,20 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJjZWxvQGdtYWlsLmNvbSIsIlJPTEVTIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE2MDUxMjM2NDAsImlhdCI6MTYwMzMyMzY0MH0.lRO2mRWrZ3r_lzdXfDf0AQqKmsqvYXfeH3tOrrUnffORvDeS4LVd1K6coZ6DVV4X6ruBjU8OrbNsYSpCw1bgxA",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJjZWxvQGdtYWlsLmNvbSIsIlJPTEVTIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE2MDUyNzk0NDAsImlhdCI6MTYwMzQ3OTQ0MH0.naJOvpbDxIG69Fx91mAu2uydi8yJH6HYDt4fu99PIpcdEmnFyAnt0rG3zj4p-XVIfDiWhKnN_S92kI35mi6X6Q",
 							"type": "string"
 						}
 					]
 				},
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/pedido/importar",
 					"protocol": "http",
@@ -227,6 +242,38 @@
 					]
 				},
 				"description": "Endpoint de consulta pedidos por e-commerce e por status\r\n\r\n* status é opcional\r\n* Endpoint autenticado (usuário padrão)"
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta informações dos items do pedido",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJjZWxvQGdtYWlsLmNvbSIsIlJPTEVTIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE2MDUxMjM2NDAsImlhdCI6MTYwMzMyMzY0MH0.lRO2mRWrZ3r_lzdXfDf0AQqKmsqvYXfeH3tOrrUnffORvDeS4LVd1K6coZ6DVV4X6ruBjU8OrbNsYSpCw1bgxA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/pedido/detalhes/20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pedido",
+						"detalhes",
+						"20"
+					]
+				},
+				"description": "Endpoint de consulta informações do pedido\r\n\r\n* pedidoID é obrigatório\r\n* Endpoint autenticado (usuário padrão)"
 			},
 			"response": []
 		},

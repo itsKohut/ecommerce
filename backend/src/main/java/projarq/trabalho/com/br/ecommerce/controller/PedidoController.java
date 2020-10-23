@@ -49,6 +49,7 @@ public class PedidoController {
         return buscarPedidosService.buscarPorData(userDetails.getUsername(), dataPedido, statusPedido);
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @GetMapping("/agilidade")
     public BuscarPedidosResponse buscarPorAgilidadeDeEntrega() {
 
@@ -66,6 +67,7 @@ public class PedidoController {
         return buscarPedidosService.buscarPorCumprimentoDeEntrega(userDetails.getUsername(), entregue);
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @PostMapping("/importar")
     @ResponseStatus(HttpStatus.OK)
     public void importar() {
