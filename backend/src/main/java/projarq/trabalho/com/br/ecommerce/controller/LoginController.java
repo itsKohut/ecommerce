@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import projarq.trabalho.com.br.ecommerce.json.request.LoginClientRequest;
 import projarq.trabalho.com.br.ecommerce.json.response.JwtResponse;
-import projarq.trabalho.com.br.ecommerce.service.AutenticacaoService;
+import projarq.trabalho.com.br.ecommerce.security.AutenticacaoService;
 
 @RestController
 @CrossOrigin

@@ -1,9 +1,7 @@
 package projarq.trabalho.com.br.ecommerce.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -13,13 +11,15 @@ import java.util.Date;
 import java.util.List;
 
 @Builder
-@Data
+@Getter
 @Table(name = "PEDIDO")
 @Entity
 @AllArgsConstructor
+@Setter
 public class Pedido implements Serializable {
 
     @Id
+    @Setter(AccessLevel.NONE)
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "PEDIDO_ID", unique = true, nullable = false)
     private Long id;

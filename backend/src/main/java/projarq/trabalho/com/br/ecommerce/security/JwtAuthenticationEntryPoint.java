@@ -1,4 +1,4 @@
-package projarq.trabalho.com.br.ecommerce.config;
+package projarq.trabalho.com.br.ecommerce.security;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;

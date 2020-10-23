@@ -1,4 +1,4 @@
-package projarq.trabalho.com.br.ecommerce.service;
+package projarq.trabalho.com.br.ecommerce.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

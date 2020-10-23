@@ -3,6 +3,7 @@ package projarq.trabalho.com.br.ecommerce.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,7 @@ public class PedidoController {
     @Autowired
     private DetalharPedidoService detalharPedidoService;
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @GetMapping("/ecommerce")
     public BuscarPedidosResponse buscarPorEcommerce(@RequestParam("nome") String eCommerce,
                                                     @RequestParam(value = "status", required = false) StatusPedido statusPedido) {
@@ -37,6 +39,7 @@ public class PedidoController {
         return buscarPedidosService.buscarPorEcommerce(userDetails.getUsername(), eCommerce, statusPedido);
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @GetMapping("/data")
     public BuscarPedidosResponse buscarPorDataPedido(@RequestParam("data") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dataPedido,
                                                      @RequestParam(value = "status", required = false) StatusPedido statusPedido) {
@@ -54,6 +57,7 @@ public class PedidoController {
         return buscarPedidosService.buscarPorAgilidadeDeEntrega(userDetails.getUsername());
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @GetMapping("/prazo")
     public BuscarPedidosResponse buscarPorCumprimentoDeEntrega(@RequestParam(value = "entregue", required = false) Boolean entregue) {
 
@@ -71,6 +75,7 @@ public class PedidoController {
         importarPedidosService.importar(userDetails.getUsername());
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @GetMapping("/detalhes/{pedidoID}")
     @ResponseStatus(HttpStatus.OK)
     public DetalhesPedidoResponse detalhar(@PathVariable("pedidoID")Long pedidoID) {

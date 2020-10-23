@@ -8,9 +8,8 @@ import lombok.Getter;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Getter
 @Entity
-@Data
+@Getter
 @Builder
 @Table(name = "ECOMMERCE")
 @AllArgsConstructor

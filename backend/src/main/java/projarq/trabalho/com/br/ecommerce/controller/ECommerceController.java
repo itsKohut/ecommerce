@@ -2,6 +2,7 @@ package projarq.trabalho.com.br.ecommerce.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import projarq.trabalho.com.br.ecommerce.entity.ECommerce;
 import projarq.trabalho.com.br.ecommerce.json.request.CadatrarEcommerceRequest;
@@ -22,6 +23,7 @@ public class ECommerceController {
     private CadastrarECommerceService cadastrarECommerceService;
 
     @GetMapping
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @ResponseStatus(HttpStatus.OK)
     public BuscarECommerceResponse buscar() {
 
@@ -29,8 +31,8 @@ public class ECommerceController {
     }
 
     @PostMapping
+    @Secured("ROLE_ADMIN")
     @ResponseStatus(HttpStatus.CREATED)
-    //@Secured("ROLE_ADMIN")
     public void cadastrar(@Valid @RequestBody CadatrarEcommerceRequest request) {
 
         ECommerce eCommerce = ECommerce.builder()

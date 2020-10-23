@@ -1,4 +1,4 @@
-package projarq.trabalho.com.br.ecommerce.service;
+package projarq.trabalho.com.br.ecommerce.security;
 
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;

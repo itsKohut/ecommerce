@@ -1,4 +1,4 @@
-package projarq.trabalho.com.br.ecommerce.config;
+package projarq.trabalho.com.br.ecommerce.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
