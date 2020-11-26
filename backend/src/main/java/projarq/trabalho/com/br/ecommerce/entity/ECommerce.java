@@ -24,7 +24,8 @@ public class ECommerce implements Serializable {
     private Long cnpj;
 
     @Column(unique = true)
-    private String nome;
+    @Enumerated(EnumType.STRING)
+    private ECommerceType nome;
 
     public ECommerce(){}
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import projarq.trabalho.com.br.ecommerce.entity.ECommerceType;
 
 import java.io.Serializable;
 

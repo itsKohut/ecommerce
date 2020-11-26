@@ -2,10 +2,7 @@ package projarq.trabalho.com.br.ecommerce.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import projarq.trabalho.com.br.ecommerce.entity.ECommerce;
-import projarq.trabalho.com.br.ecommerce.entity.Pedido;
-import projarq.trabalho.com.br.ecommerce.entity.StatusPedido;
-import projarq.trabalho.com.br.ecommerce.entity.Usuario;
+import projarq.trabalho.com.br.ecommerce.entity.*;
 import projarq.trabalho.com.br.ecommerce.json.response.BuscarPedidosResponse;
 import projarq.trabalho.com.br.ecommerce.repository.ECommerceRepository;
 import projarq.trabalho.com.br.ecommerce.repository.PedidoRepository;
@@ -33,7 +30,7 @@ public class BuscarPedidosService {
 
         final Usuario usuario = usuarioRepository.findByEmail(email);
 
-        final ECommerce eCommerceEntity = eCommerceRepository.findByNome(eCommerce);
+        final ECommerce eCommerceEntity = eCommerceRepository.findByNome(ECommerceType.valueOf(eCommerce));
 
         List<Pedido> pedidos = null;
 

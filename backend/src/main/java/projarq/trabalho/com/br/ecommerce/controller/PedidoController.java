@@ -7,12 +7,13 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import projarq.trabalho.com.br.ecommerce.entity.ECommerceType;
 import projarq.trabalho.com.br.ecommerce.entity.StatusPedido;
 import projarq.trabalho.com.br.ecommerce.json.response.BuscarPedidosResponse;
 import projarq.trabalho.com.br.ecommerce.json.response.DetalhesPedidoResponse;
 import projarq.trabalho.com.br.ecommerce.service.BuscarPedidosService;
 import projarq.trabalho.com.br.ecommerce.service.DetalharPedidoService;
-import projarq.trabalho.com.br.ecommerce.service.ImportarPedidosService;
+import projarq.trabalho.com.br.ecommerce.service.importacao.ImportarPedidosService;
 
 import java.util.Date;
 
@@ -70,11 +71,11 @@ public class PedidoController {
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @PostMapping("/importar")
     @ResponseStatus(HttpStatus.OK)
-    public void importar() {
+    public void importar(   @RequestParam(value = "ecommerce", required = false) ECommerceType eCommerce) {
 
         final UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        importarPedidosService.importar(userDetails.getUsername());
+        importarPedidosService.importar(userDetails.getUsername(), eCommerce );
     }
 
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
