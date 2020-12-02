@@ -1,0 +1,8 @@
+https://github.com/itsKohut/ecommerce/
+https://github.com/itsKohut/ecommerce/wiki/   
+
+Marcelo Henrique de Souza (backend)
+Phillip Mittmann (frontend)
+Joseph Weber (artefatos de documentação e wiki)
+Leonardo Pasquealotto (artefatos de documentação e wiki)
+Profa. Ana Paula Terra Bacelo (Product Owner)
